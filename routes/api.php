@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('/users', [UserController::class, 'store'])->name('user.create');
+
+});
+
