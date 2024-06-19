@@ -23,6 +23,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('user.create');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+
 
 });
 
