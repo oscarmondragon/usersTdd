@@ -16,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Auth routes
+Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::middleware('auth:api')->group(function () {
+    Route::post('logout', [LoginController::class, 'logout'])->name('auth.logout');
+    Route::post('refresh', [LoginController::class, 'refresh'])->name('auth.refresh');
+    Route::post('me', [LoginController::class, 'me'])->name('auth.me');
+
+});
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('user.create');
