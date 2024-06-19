@@ -21,6 +21,6 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('user.create');
-
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 
