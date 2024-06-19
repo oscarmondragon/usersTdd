@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Http\Requests\UserCreateRequest;
 use Illuminate\Http\Request;
@@ -31,9 +32,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($user_id)
     {
-        //
+        $user = User::find($user_id);
+        return new UserResource($user);
     }
 
     /**
